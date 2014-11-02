@@ -79,7 +79,7 @@ public class Q2_7 {
 		ListNode<Integer> head = list;
 		ListNode<Integer> loop = null;
 		ListNode<Integer> end = null;
-		float d = 3 / 2;
+		float d = 3 / 4;
 		System.out.println(d);
 		System.out.println(Math.ceil(d));
 		int n = 99;
