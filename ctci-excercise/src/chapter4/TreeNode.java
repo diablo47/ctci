@@ -8,6 +8,7 @@ public class TreeNode<T> {
 	public T data;
 	public TreeNode<T> left;
 	public TreeNode<T> right;
+	public TreeNode<T> parent;
 
 	public TreeNode() {
 
@@ -22,6 +23,10 @@ public class TreeNode<T> {
 		return createFromList(list, 0, list.size() - 1);
 	}
 
+	public String toString() {
+		return data.toString();
+	}
+
 	private static <E> TreeNode<E> createFromList(List<E> list, int begin,
 			int end) {
 		if (end < begin)
@@ -31,9 +36,21 @@ public class TreeNode<T> {
 		ret.data = list.get(middle);
 		// if (middle - 1 >= begin)
 		ret.left = createFromList(list, begin, middle - 1);
+		if (ret.left != null)
+			ret.left.parent = ret;
 		// if (middle + 1 <= end)
 		ret.right = createFromList(list, middle + 1, end);
+		if (ret.right != null)
+			ret.right.parent = ret;
 		return ret;
+
+	}
+
+	public static int height(TreeNode<?> head) {
+		if (head == null)
+			return 0;
+		else
+			return Math.max(height(head.left), height(head.right)) + 1;
 
 	}
 
@@ -79,6 +96,8 @@ public class TreeNode<T> {
 		for (int i = 1; i <= 10; i++)
 			list.add(i);
 		TreeNode<Integer> head = createFromList(list);
+
+		System.out.println(height(head));
 		System.out.println(TreeNode.inOrder(head));
 		System.out.println(TreeNode.preOrder(head));
 		System.out.println(TreeNode.postOrder(head));
