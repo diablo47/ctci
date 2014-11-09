@@ -91,15 +91,40 @@ public class TreeNode<T> {
 		return sb.toString();
 	}
 
+	public static <E extends Comparable<E>> void insert(
+			TreeNode<E> bstTreeNode, TreeNode<E> node) {
+		int compare = node.data.compareTo(bstTreeNode.data);
+		if (compare == 0) {
+			node.left = bstTreeNode.left;
+			bstTreeNode.left = node;
+		} else if (compare == -1) {
+			if (bstTreeNode.left == null) {
+				bstTreeNode.left = node;
+			} else
+				insert(bstTreeNode.left, node);
+		} else {
+			if (bstTreeNode.right == null) {
+				bstTreeNode.right = node;
+			} else {
+				insert(bstTreeNode.right, node);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		List<Integer> list = new ArrayList<Integer>();
-		for (int i = 1; i <= 10; i++)
+		for (int i = 2; i <= 20; i += 2)
 			list.add(i);
 		TreeNode<Integer> head = createFromList(list);
+		TreeNode<Integer> temp = new TreeNode<Integer>();
 
 		System.out.println(height(head));
 		System.out.println(TreeNode.inOrder(head));
 		System.out.println(TreeNode.preOrder(head));
 		System.out.println(TreeNode.postOrder(head));
+		temp.data = 11;
+		insert(head, temp);
+		System.out.println(TreeNode.inOrder(head));
 	}
+
 }
