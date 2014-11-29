@@ -46,15 +46,13 @@ public class Q17_13 {
 		TreeNode<T> right = toList2(head.right);
 		if (left == null && right == null) {
 			head.left = head;
-//			head.right = head;
 			return head;
 		}
 		if (left != null) { // left buweikong
-			TreeNode<T> tail = head.left;
+			TreeNode<T> tail = left.left;
 			head.left = tail;
 			tail.right = head;
 
-//			head.right = left;
 			left.left = head;
 			ret = left;
 		} else {
@@ -66,7 +64,6 @@ public class Q17_13 {
 			right.left = head;
 			
 			ret.left = tail;
-//			tail.right = ret;
 		}
 
 		return ret;
@@ -81,6 +78,7 @@ public class Q17_13 {
 		System.out.println(TreeNode.height(head));
 //		TreeNode<Integer> result = toList(head);
 		TreeNode<Integer> result2 = toList2(head);
+		head.left = null;
 		System.out.println(result2);
 	}
 
