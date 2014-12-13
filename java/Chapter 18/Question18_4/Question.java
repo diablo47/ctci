@@ -67,6 +67,7 @@ public class Question {
 			int v2 = count2sInRange(i);	
 			System.out.println("Between 0 and " + i + ": " + v1 + " " + v2);
 		}
+		System.out.println(count2sInRange(61523));
 	}
 
 }

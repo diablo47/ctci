@@ -2,6 +2,7 @@ package chapter18;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
 
 public class Q18_6 {
@@ -54,17 +55,10 @@ public class Q18_6 {
 	}
 
 	public static void usingHeap(int a[], int n) {
-		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(n,
-				new Comparator<Integer>() {
-
-					@Override
-					public int compare(Integer o1, Integer o2) {
-						return 0 - o1.compareTo(o2);
-					}
-				});
+		Queue<Integer> queue = new PriorityQueue<Integer>(n);
 		for (int i : a) {
 			if (queue.size() == n) {
-				if (i < queue.peek()) {
+				if (i > queue.peek()) {
 					queue.poll();
 					queue.add(i);
 				}
@@ -88,5 +82,18 @@ public class Q18_6 {
 		print(a, end);
 		System.out.println();
 		usingHeap(a, m);
+		System.out.println();
+		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(10,
+				new Comparator<Integer>() {
+
+					@Override
+					public int compare(Integer o1, Integer o2) {
+						return 0 - o1.compareTo(o2);
+					}
+				});
+		for (int i = 0; i < 100; i++) {
+			queue.add(i);
+		}
+		System.out.println(queue.peek());
 	}
 }

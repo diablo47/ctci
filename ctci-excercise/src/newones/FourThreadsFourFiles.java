@@ -68,11 +68,11 @@ public class FourThreadsFourFiles {
 				System.out.println(three);
 				System.out.println(four);
 				System.out.println("Switching targets ");
-				int tempRound = rounds % 4;
-				writers.get(tempRound % 4).setTarget(one);
-				writers.get((++tempRound) % 4).setTarget(two);
-				writers.get((++tempRound) % 4).setTarget(three);
-				writers.get((++tempRound) % 4).setTarget(four);
+//				int tempRound = rounds % 4;
+				writers.get(rounds % 4).setTarget(one);
+				writers.get((rounds+1) % 4).setTarget(two);
+				writers.get((rounds+2) % 4).setTarget(three);
+				writers.get((rounds+3) % 4).setTarget(four);
 				try {
 					TimeUnit.MILLISECONDS.sleep(500);
 				} catch (InterruptedException e) {

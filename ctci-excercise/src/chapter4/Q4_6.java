@@ -10,7 +10,7 @@ public class Q4_6 {
 			return findLeftChildren(node.right);
 		}
 		TreeNode<T> parent = node.parent;
-		TreeNode<T> current = node.parent;
+		TreeNode<T> current = node;
 		while (parent != null && parent.left != current) {
 			current = parent;
 			parent = parent.parent;

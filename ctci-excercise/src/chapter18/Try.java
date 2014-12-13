@@ -1,5 +1,7 @@
 package chapter18;
 
+import java.util.Collection;
+
 class Test {
 	public int i;
 
@@ -38,6 +40,10 @@ public class Try {
 		obj = new Test();
 		obj.i = -1;
 	}
+	
+	public Object[] remove(Object[] objs){
+		return new Object[1];
+	}
 
 	public static void main(String[] args) {
 		System.out.println("return: " + test());
@@ -55,5 +61,15 @@ public class Try {
 			b = ret;
 		}
 		System.out.println(ret);
+		
+        short v1 = 18;
+        Long v2 = new Long("18");
+        Long v3 = new Long(18);
+        Short v4 = new Short(v1);
+        
+        System.out.println(v1==v2);
+        System.out.println(v2==v3);
+        System.out.println(v3.equals(v1));
+        System.out.println(v3.equals(v4));
 	}
 }
