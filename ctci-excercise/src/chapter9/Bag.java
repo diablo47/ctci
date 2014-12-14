@@ -15,12 +15,12 @@ class Result {
 public class Bag {
 
 	public static Result values(int[] weight, int[] value, int index, int max,
-			int maxWeight) {
+			int weightLeft) {
 		if (index == max - 1) {
 			boolean[] choice = new boolean[max];
 			Result ret = new Result();
 			ret.choice = choice;
-			if (weight[index] <= maxWeight) {
+			if (weight[index] <= weightLeft) {
 				ret.value = value[index];
 				choice[index] = true;
 			} else {
@@ -31,9 +31,9 @@ public class Bag {
 		}
 
 		int currentWeight = weight[index];
-		Result v1 = values(weight, value, index + 1, max, maxWeight);
-		if (currentWeight < maxWeight) {
-			Result v2 = values(weight, value, index + 1, max, maxWeight
+		Result v1 = values(weight, value, index + 1, max, weightLeft);
+		if (currentWeight < weightLeft) {
+			Result v2 = values(weight, value, index + 1, max, weightLeft
 					- currentWeight);
 			if (v2.value + value[index] > v1.value) {
 				v2.value += value[index];

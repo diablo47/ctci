@@ -8,6 +8,7 @@ public class Q5_1 {
 		int k = j - i + 1;
 		int ones = 1 << k;
 		ones = ones - 1;
+		ones = ones << i;
 		ones = ~ones;
 		n = n & ones;
 		n = n | m << i;
@@ -16,7 +17,7 @@ public class Q5_1 {
 	}
 
 	public static void main(String[] args) {
-		int n = Integer.valueOf("1000000000000", 2);
+		int n = Integer.valueOf("1000000000011", 2);
 		int m = Integer.valueOf("10011", 2);
 		replace(n, m, 2, 6);
 	}

@@ -59,12 +59,19 @@ public class Q9_11 {
 	public static int countDp(String express, int expected,
 			Map<String, Integer> cache) {
 		int count = 0;
-		if (cache.get(express) != null)
-			return cache.get(express);
-		if (isUnit(express)) {
-			int value = calculate(express);
+		String key = express + "+" + expected;
+		if (cache.get(key) != null)
+			return cache.get(key);
+		// if (isUnit(express)) {
+		// int value = calculate(express);
+		// count = value == expected ? 1 : 0;
+		// cache.put(key, count);
+		// return count;
+		// }
+		if (express.length() == 1) {
+			int value = Integer.valueOf(express);
 			count = value == expected ? 1 : 0;
-			cache.put(express, count);
+			cache.put(key, count);
 			return count;
 		}
 
@@ -75,16 +82,19 @@ public class Q9_11 {
 			if (expected == 1) {
 				switch (operator) {
 				case '&':
-					count += count(left, 1) * count(right, 1);
+					count += countDp(left, 1, cache) * countDp(right, 1, cache);
 					break;
 				case '|':
-					count += count(left, 1) * count(right, 1) + count(left, 1)
-							* count(right, 0) + count(left, 0)
-							* count(right, 1);
+					count += countDp(left, 1, cache) * countDp(right, 1, cache)
+							+ countDp(left, 1, cache)
+							* countDp(right, 0, cache)
+							+ countDp(left, 0, cache)
+							* countDp(right, 1, cache);
 					break;
 				case '^':
-					count += count(left, 1) * count(right, 0) + count(left, 0)
-							* count(right, 1);
+					count += countDp(left, 1, cache) * countDp(right, 0, cache)
+							+ countDp(left, 0, cache)
+							* countDp(right, 1, cache);
 					break;
 				default:
 					break;
@@ -92,24 +102,27 @@ public class Q9_11 {
 			} else {
 				switch (operator) {
 				case '&':
-					count += count(left, 0) * count(right, 0) + count(left, 1)
-							* count(right, 0) + count(left, 0)
-							* count(right, 1);
+					count += countDp(left, 0, cache) * countDp(right, 0, cache)
+							+ countDp(left, 1, cache)
+							* countDp(right, 0, cache)
+							+ countDp(left, 0, cache)
+							* countDp(right, 1, cache);
 					;
 					break;
 				case '|':
-					count += count(left, 0) * count(right, 0);
+					count += countDp(left, 0, cache) * countDp(right, 0, cache);
 					break;
 				case '^':
-					count += count(left, 1) * count(right, 1) + count(left, 0)
-							* count(right, 0);
+					count += countDp(left, 1, cache) * countDp(right, 1, cache)
+							+ countDp(left, 0, cache)
+							* countDp(right, 0, cache);
 					break;
 				default:
 					break;
 				}
 			}
 		}
-		cache.put(express, count);
+		cache.put(key, count);
 		return count;
 	}
 
@@ -143,6 +156,6 @@ public class Q9_11 {
 		Map<String, Integer> cache = new HashMap<String, Integer>();
 		System.out.println(count(terms, 1));
 		System.out.println(countDp(terms, 1, cache));
-		System.out.println(count("1&1", 1));
+		System.out.println(countDp("1&1", 1, cache));
 	}
 }

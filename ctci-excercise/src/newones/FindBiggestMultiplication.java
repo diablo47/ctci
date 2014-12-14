@@ -24,7 +24,7 @@ public class FindBiggestMultiplication {
     }
 	
 	public static void main(String[] args){
-		int[] a = new int[]{2,3,-2,4};
+		int[] a = new int[]{2,3,-2,4,-4};
 		System.out.println(maxProduct(a));
 	}
 	

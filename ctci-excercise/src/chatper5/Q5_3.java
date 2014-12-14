@@ -37,14 +37,14 @@ public class Q5_3 {
 			tail1s++;
 			temp = temp >> 1;
 		}
+		if (temp == 0)
+			return -1;
 		while ((temp & 1) == 0) {
 			tail0s++;
 			temp = temp >> 1;
 		}
 		System.out.println("tail 0s:" + tail0s);
 		System.out.println("tail 1s:" + tail1s);
-		if (temp == 0)
-			return -1;
 		int change = tail0s + tail1s;
 		n = n & ~((1 << (change + 1)) - 1);
 		n = n | (((1 << (tail1s + 1)) - 1) << (tail0s - 1));

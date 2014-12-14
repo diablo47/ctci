@@ -33,16 +33,21 @@ public class Q17_6 {
 		n++;
 		System.out.println("m: " + m);
 		System.out.println("n: " + n);
-		
+		Result result = findResult(list, m + 1, n - 1);
+		int small = result.small;
+		int big = result.big;
 		while (m > 0 && n < (list.size() - 1)) {
-			Result result = findResult(list, m + 1, n - 1);
 			boolean breakloop = true;
-			if (list.get(m) > result.small) {
+			if (list.get(m) > small) {
 				m--;
+				if(list.get(m)>big)
+					big = list.get(m);
 				breakloop = false;
 			}
-			if (list.get(n) < result.big) {
+			if (list.get(n) < big) {
 				n++;
+				if(list.get(n)<small)
+					small = list.get(n);
 				breakloop = false;
 			}
 			if (breakloop)

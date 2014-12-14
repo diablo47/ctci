@@ -10,6 +10,18 @@ public class LoopTrvasal {
 		List<TreeNode<T>> ret = new ArrayList<TreeNode<T>>();
 		Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
 		TreeNode<T> temp = head;
+		// while (temp != null || !stack.isEmpty()) {
+		// while (temp != null) {
+		// stack.push(temp);
+		// temp = temp.left;
+		// }
+		// if (!stack.isEmpty()) {
+		// temp = stack.pop();
+		// ret.add(temp);
+		// temp = temp.right;
+		// }
+		// }
+
 		while (temp != null || !stack.isEmpty()) {
 			while (temp != null) {
 				stack.push(temp);

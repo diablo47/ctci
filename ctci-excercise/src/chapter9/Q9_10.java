@@ -100,7 +100,7 @@ public class Q9_10 {
 		boxes.add(new Box(8, 6, 2));
 		boxes.add(new Box(9, 8, 4));
 		boxes.add(new Box(9, 10, 3));
-		System.out.println(build(boxes, null));
+//		System.out.println(build(boxes, null));
 		Map<Box, List<Box>> cache = new HashMap<Box, List<Box>>();
 		System.out.println(buildDP(boxes, null, cache));
 		System.out.println(-3 % 4);

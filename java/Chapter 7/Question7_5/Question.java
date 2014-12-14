@@ -65,7 +65,7 @@ public class Question {
 		// Not overlapping -- side by side
 		doTestFull(new Square(10, 10, 10), new Square(19, 25, 4), new Point(12.5, 10), new Point(22, 29));				
 		
-		// Not overlapping -- on top of each other
+		// Not overlapping -- on top of each other 
 		doTestFull(new Square(10, 10, 10), new Square(4, 4, 3), new Point(4, 4), new Point(20, 20));		
 		
 		// Contained

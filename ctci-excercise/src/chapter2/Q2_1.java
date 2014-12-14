@@ -21,17 +21,31 @@ public class Q2_1 {
 		}
 	}
 
+	public static <T> void removeDuplicate2(ListNode<T> head) {
+		ListNode<T> current = head;
+		while (current != null) {
+			ListNode<T> runner = current;
+			while (runner.next != null) {
+				if (runner.next.data.equals(current.data)) {
+					runner.next = runner.next.next;
+				} else
+					runner = runner.next;
+			}
+			current = current.next;
+		}
+	}
+
 	public static <T> void removeDuplicate1(ListNode<T> head) {
 		ListNode<T> temp = head.next;
-		head.next=null;
+		head.next = null;
 		ListNode<T> tempHead = head;
 		while (temp != null) {
 			T data = temp.data;
-			if(!dataExists(head, data))	{
+			if (!dataExists(head, data)) {
 				tempHead.next = temp;
 				tempHead = temp;
 				temp = temp.next;
-				tempHead.next=null;
+				tempHead.next = null;
 			} else
 				temp = temp.next;
 		}
@@ -39,14 +53,14 @@ public class Q2_1 {
 
 	public static <T> boolean dataExists(ListNode<T> head, T data) {
 		ListNode<T> temp = head;
-		while(temp !=null ){
-			if(temp.data.equals(data))
+		while (temp != null) {
+			if (temp.data.equals(data))
 				return true;
 			temp = temp.next;
 		}
 		return false;
 	}
-	
+
 	public static void main(String[] args) {
 		ListNode<Integer> list = new ListNode<Integer>(1);
 		ListNode<Integer> head = list;
@@ -56,8 +70,8 @@ public class Q2_1 {
 			head = temp;
 		}
 		System.out.println(list.printList());
-//		removeDuplicate(list);
-		removeDuplicate1(list);
+		// removeDuplicate(list);
+		removeDuplicate2(list);
 		System.out.println(list.printList());
 	}
 }

@@ -45,6 +45,7 @@ public class Q4_2 {
 					System.out.print(neighbour.data + " ");
 					if (neighbour.data.equals(end.data)) {
 						path.push(neighbour);
+						System.out.println(path);
 						return true;
 					}
 					neighbour.state = State.Visited;
@@ -53,7 +54,7 @@ public class Q4_2 {
 			}
 			path.pop();
 		}
-
+		System.out.println(path);
 		return false;
 	}
 
@@ -139,7 +140,7 @@ public class Q4_2 {
 			path.push(end.previous);
 			end = end.previous;
 		}
-		System.out.println(path);
+//		System.out.println(path);
 
 		// System.out.println(df(nodes.get(1),nodes.get(6)));
 		// System.out.println(bf(nodes.get(1),nodes.get(6)));
